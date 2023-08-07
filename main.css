@@ -1,0 +1,44 @@
+html, body {
+    background-color: rgb(7, 85, 7);
+    margin: 0;
+    padding: 7px; /*Create dark green border around wrapper*/
+    width: calc(100%-14px); /*Make padding visible and uniform on all sides*/
+    height: calc(100%-14px);
+    justify-content: center;
+}
+
+.wrapper {
+    height: 1000px;
+    padding: 20px; /*7px of padding for html, body and 7px for wrapper*/
+    margin: 0;
+    border-style: solid 5px;
+    background-color: rgb(39, 134, 39);
+    border-radius: 5px;
+    justify-content: center;
+}
+
+/*All 3 sections for main elements*/
+
+.topbar, .extra_info, .filters {
+    background-color: white;
+    width: calc(100%-20px);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.topbar {
+    height: 8%;
+    margin-bottom: 2%;
+}
+
+.extra_info {
+    height: 28%;
+    margin-bottom: 2%;
+}
+
+.filters {
+    height: 56%;
+    margin-bottom: 2%;
+}
+
+/*Content of main sections*/
