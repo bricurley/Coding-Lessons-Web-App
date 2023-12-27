@@ -1,9 +1,9 @@
 html, body {
-    background-color: rgb(7, 85, 7);
+    background-color: rgb(7, 10, 85);
     margin: 0;
-    padding: 7px; /*Create dark green border around wrapper*/
-    width: calc(100%-14px); /*Make padding visible and uniform on all sides*/
-    height: calc(100%-14px);
+    padding: 15px; /*Create dark blue border around wrapper*/
+    width: calc(100%-30px); /*Make padding visible and uniform on all sides - calc(100%-padding times 2) */
+    height: calc(100%-30px);
     justify-content: center;
 }
 
@@ -12,33 +12,55 @@ html, body {
     padding: 20px; /*7px of padding for html, body and 7px for wrapper*/
     margin: 0;
     border-style: solid 5px;
-    background-color: rgb(39, 134, 39);
+    background-color: rgb(39, 66, 134);
     border-radius: 5px;
+    flex-direction: column; /* Stack inside sections vertically*/
     justify-content: center;
 }
 
 /*All 3 sections for main elements*/
 
 .topbar, .extra_info, .filters {
-    background-color: white;
-    width: calc(100%-20px);
-    padding: 5px;
-    border-radius: 5px;
+    width: calc(100%-20px); /*width = 100& - padding of wrapper */
+    padding: 10px;
+    border-style: solid 5px;
+    margin-bottom: 2%; /*Height of each plus margin-bottom of each should add too 100% */
 }
 
 .topbar {
-    height: 8%;
-    margin-bottom: 2%;
+    height: 5%;
+    background-color: white;
+    padding: 15px;
 }
 
 .extra_info {
-    height: 28%;
-    margin-bottom: 2%;
+    height: 22%;
+    background-color: white;
 }
 
 .filters {
-    height: 56%;
-    margin-bottom: 2%;
+    height: 60%;
+    background-color: rgb(200, 200, 200);
 }
 
 /*Content of main sections*/
+
+/*Sections inside top bat*/
+.account_management, .heading {
+    flex-direction: row;
+    display: inline-block;
+}
+.heading {
+    width: 50%;
+}
+
+.account_management {
+    float: right;
+    width: 10%;
+    height: 60%;
+    background-color: rgb(200, 200, 200);
+    padding: 10px;
+    margin-left: 20px;
+    text-align: center;
+    color: black;
+}
