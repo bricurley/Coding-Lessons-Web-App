@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create Account</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" rel="text/css" href="main.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <div class="heading">Create Account</div>
+            <a href="{{url_for('home')}}" class="account_management">Home</a>
+        </div>
+        <div class="account_creation">
+            <form method="post" action="#">
+                <fieldset>
+                    <label for="firstname">First name:</label>
+                    <input id="firstname" name="firstname" type="text" required>
+                    <label for="lastname">Last name:</label>
+                    <input id="lastname" name="lastname" type="text" required>
+                </fieldset>
+                <fieldset>
+                    <label for="username">Create a username:</label>
+                    <input id="username" name="username" type="text" required>
+                </fieldset>
+                <fieldset>
+                    <label for="password">Create a password:</label>
+                    <input id="password" name="password" type="text" required>
+                </fieldset>
+                    <input type="submit" value="Confirm">
+            </form>
+            <br><a href="{{url_for('signin')}}">I already have an account </a>
+        </div>
+    </div>
+</body>
+</html>

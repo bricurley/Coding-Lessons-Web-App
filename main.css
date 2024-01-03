@@ -8,7 +8,7 @@ html, body {
 }
 
 .wrapper {
-    height: 1000px;
+    height: 600px;
     padding: 20px; /*7px of padding for html, body and 7px for wrapper*/
     margin: 0;
     border-style: solid 5px;
@@ -20,7 +20,7 @@ html, body {
 
 /*All 3 sections for main elements*/
 
-.topbar, .extra_info, .filters {
+.topbar, .extra_info, .filters, .account_creation {
     width: calc(100%-20px); /*width = 100& - padding of wrapper */
     padding: 10px;
     border-style: solid 5px;
@@ -39,13 +39,13 @@ html, body {
 }
 
 .filters {
-    height: 60%;
+    height: 54%;
     background-color: rgb(200, 200, 200);
 }
 
 /*Content of main sections*/
 
-/*Sections inside top bat*/
+/*Sections inside top bar*/
 .account_management, .heading {
     flex-direction: row;
     display: inline-block;
@@ -59,8 +59,30 @@ html, body {
     width: 10%;
     height: 60%;
     background-color: rgb(200, 200, 200);
-    padding: 10px;
+    padding: 7px;
     margin-left: 20px;
     text-align: center;
+    color: black;
+}
+
+/* Extras for account creation page */
+
+.account_creation {
+    height: 70%;
+    background-color: rgb(200, 200, 200);
+}
+
+fieldset {
+    border: none;
+    border-bottom: 3px solid rgb(7, 10, 85);
+    margin-bottom: 7px;
+}
+
+label, input {
+    margin-right: 6px;
+    margin-bottom: 5px;
+}
+
+a {
     color: black;
 }
