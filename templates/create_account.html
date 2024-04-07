@@ -4,7 +4,7 @@
     <title>Create Account</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" rel="text/css" href="main.css">
+    <link rel="stylesheet" rel="text/css" href="/static/main.css">
 </head>
 <body>
     <div class="wrapper">
@@ -13,7 +13,7 @@
             <a href="{{url_for('home')}}" class="account_management">Home</a>
         </div>
         <div class="account_creation">
-            <form method="post" action="#">
+            <form method="post" action="{{url_for('create_account')}}">
                 <fieldset>
                     <label for="firstname">First name:</label>
                     <input id="firstname" name="firstname" type="text" required>
@@ -26,7 +26,7 @@
                 </fieldset>
                 <fieldset>
                     <label for="password">Create a password:</label>
-                    <input id="password" name="password" type="text" required>
+                    <input id="password" name="password" type="password" required>
                 </fieldset>
                     <input type="submit" value="Confirm">
             </form>

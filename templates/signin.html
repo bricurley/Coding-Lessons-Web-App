@@ -4,7 +4,7 @@
     <title>Sign In</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" rel="text/css" href="main.css">
+    <link rel="stylesheet" rel="text/css" href="/static/main.css">
 </head>
 <body>
     <div class="wrapper">
@@ -13,8 +13,7 @@
             <a href="{{url_for('home')}}" class="account_management">Home</a>
         </div>
         <div class="account_creation">
-            <!--DON'T FORGET TO ADD THE ACTION!!!!!-->
-            <form method="post">
+            <form method="post", action="{{url_for('signin')}}">
                 <fieldset>
                     <label for="username">Enter your username:</label>
                     <input id="username" name="username" type="text" required>
@@ -24,7 +23,7 @@
                     <input id="password" name="password" type="text" required>
                 </fieldset>
                     <label for="remember">Remember me</label>
-                    <input id="remember" name="remember" type="checkbox" required>
+                    <input id="remember" name="remember" type="checkbox">
                     <input type="submit" value="Login">
             </form>
             <br><a href="{{url_for('create_account')}}">I don't have an account </a>
