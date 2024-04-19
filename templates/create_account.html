@@ -29,6 +29,13 @@
                     <input id="password" name="password" type="password" required>
                 </fieldset>
                     <input type="submit" value="Confirm">
+                    {% with messages = get_flashed_messages() %}
+                        {% for message in messages %}
+                        {% if messages %}
+                            <div class="flashes">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                    {% endwith %}
             </form>
             <br><a href="{{url_for('signin')}}">I already have an account </a>
         </div>

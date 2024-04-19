@@ -20,11 +20,16 @@
                 </fieldset>
                 <fieldset>
                     <label for="password">Enter your password:</label>
-                    <input id="password" name="password" type="text" required>
+                    <input id="password" name="password" type="password" required>
                 </fieldset>
-                    <label for="remember">Remember me</label>
-                    <input id="remember" name="remember" type="checkbox">
                     <input type="submit" value="Login">
+                    {% with messages = get_flashed_messages() %}
+                    {% for message in messages %}
+                    {% if messages %}
+                        <div class="flashes">{{ message }}</div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endwith %}
             </form>
             <br><a href="{{url_for('create_account')}}">I don't have an account </a>
         </div>

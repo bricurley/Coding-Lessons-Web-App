@@ -78,11 +78,15 @@ fieldset {
     margin-bottom: 7px;
 }
 
-label, input {
+label, input, .flashes {
     margin-right: 6px;
     margin-bottom: 5px;
 }
 
 a {
     color: black;
+}
+
+.flashes {
+    color: red;
 }

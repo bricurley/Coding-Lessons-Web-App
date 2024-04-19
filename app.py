@@ -1,6 +1,6 @@
-from flask import Flask, request, redirect, url_for, render_template
+from flask import Flask, request, redirect, url_for, render_template, flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user
+from flask_login import LoginManager, UserMixin, login_user, logout_user
 from flask_bcrypt import bcrypt, Bcrypt
 
 '''
@@ -47,22 +47,31 @@ Routing and page management
 def home():
     return render_template("home.html")
 
+# logout
+@app.route('/logout')
+def logout():
+    # TODO LOG USER OUT
+    return redirect(url_for("home"))
+
+
 # signin.html
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
     if request.method == "POST":
-        user = User.query.filter_by(
-            username=request.form.get("username")).first()
-        
-        # Check for correct password 
-        entered_pw = request.form.get("password")
-        hashed_pw = user.password
-        if bcrypt.check_password_hash(hashed_pw, entered_pw):
-            login_user(user)
-            return redirect(url_for("home"))
-        #TODO tell user if they have entered incorrect password
+        if (not User.query.filter_by(username=request.form.get("username")).first()):
+            flash("Username does not exist")
+
         else:
-            return("Password did not work :(")
+            user = User.query.filter_by(
+            username=request.form.get("username")).first()
+        # Check for correct password 
+            entered_pw = request.form.get("password")
+            hashed_pw = user.password
+            if bcrypt.check_password_hash(hashed_pw, entered_pw):
+                login_user(user)
+                return redirect(url_for("home"))
+            else:
+                flash("Incorrect password!")
         
     return render_template("signin.html")
 
@@ -74,17 +83,19 @@ def create_account():
         hashed_pw = bcrypt.generate_password_hash(request.form.get("password")).decode('utf-8')
         un = request.form.get("username")
 
-        #TODO check if username is taken
+        # check if username is taken
         if (User.query.filter_by(username=request.form.get("username")).first()):
-            return render_template("create_account.html")
+            flash("Username already exists. Please choose a different username")
+            return redirect(url_for("create_account"))
         # If username if not taken
-        user = User(firstname=request.form.get("firstname"),
+        else:
+            user = User(firstname=request.form.get("firstname"),
                      lastname=request.form.get("lastname"),
                      username=un,
                      password=hashed_pw)
-        # Add the user to the database and commit changes
-        db.session.add(user)
-        db.session.commit()
+            # Add the user to the database and commit changes
+            db.session.add(user)
+            db.session.commit()
 
         # Redirect to login page
         return redirect(url_for("signin"))
