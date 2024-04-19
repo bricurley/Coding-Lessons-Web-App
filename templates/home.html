@@ -10,8 +10,13 @@
     <div class="wrapper">
         <div class="topbar">
             <div class="heading">Home Page</div>
-                <a href="{{url_for('signin')}}" class="account_management">Log In</a>
+                {% if session.name %}
+                <a href="{{url_for('logout')}}" class="account_management">Log Out</a>
+                Hello, {{ session.name }}!!!
+                {% else %}
+                <a href="{{url_for('login')}}" class="account_management">Log In</a>
                 <a href="{{url_for('create_account')}}" class="account_management">Create Account</a>
+                {% endif %}
         </div>
         <div class="extra_info">Welcome! I am so glad you're here! This project is not complete; however, I hope to construct a working user login system
             using Python's Flask framework and a MySQL database (currently using SQLite) so users can search for coding lessons based on

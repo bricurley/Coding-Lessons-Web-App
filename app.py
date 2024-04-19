@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template, flash
+from flask import Flask, request, redirect, url_for, render_template, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user
 from flask_bcrypt import bcrypt, Bcrypt
@@ -14,6 +14,10 @@ app = Flask(__name__, template_folder='templates', static_folder='static')
 db = SQLAlchemy()
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
 app.config["SECRET_KEY"] = "my_secret_key"
+
+# Session handling
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
 
 # Class for the users
 class User(db.Model, UserMixin):
@@ -50,16 +54,16 @@ def home():
 # logout
 @app.route('/logout')
 def logout():
-    # TODO LOG USER OUT
+    session["name"] = None
     return redirect(url_for("home"))
 
-
-# signin.html
-@app.route('/signin', methods=['GET', 'POST'])
-def signin():
+# login.html
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     if request.method == "POST":
+        # Check for valid username
         if (not User.query.filter_by(username=request.form.get("username")).first()):
-            flash("Username does not exist")
+            flash("Username does not exist. Please login with your username and password")
 
         else:
             user = User.query.filter_by(
@@ -68,12 +72,12 @@ def signin():
             entered_pw = request.form.get("password")
             hashed_pw = user.password
             if bcrypt.check_password_hash(hashed_pw, entered_pw):
-                login_user(user)
+                session["name"] = user.firstname
                 return redirect(url_for("home"))
             else:
                 flash("Incorrect password!")
         
-    return render_template("signin.html")
+    return render_template("login.html")
 
 # create_account.html
 @app.route('/create_account', methods=['GET', 'POST'])
@@ -87,6 +91,7 @@ def create_account():
         if (User.query.filter_by(username=request.form.get("username")).first()):
             flash("Username already exists. Please choose a different username")
             return redirect(url_for("create_account"))
+        
         # If username if not taken
         else:
             user = User(firstname=request.form.get("firstname"),
@@ -96,9 +101,9 @@ def create_account():
             # Add the user to the database and commit changes
             db.session.add(user)
             db.session.commit()
-
-        # Redirect to login page
-        return redirect(url_for("signin"))
+            # Log user in and redirect to login page
+            session["name"] = user.firstname
+            return redirect(url_for("home"))
 
     return render_template("create_account.html")
 
