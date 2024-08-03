@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" rel="text/css" href="/static/main.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <div class="heading">Dashboard for {{ session.username }}</div>
+            <a href="{{url_for('home')}}" class="account_management">Home</a>
+        </div>
+        <div class="extra_info">Upload a lesson!
+            <form method="post", action="{{url_for('dashboard')}}">
+            <fieldset>
+                <label for="name">Enter the lesson name:</label>
+                <input id="name" name="name" type="text" required>
+                <label for="link">Enter the link:</label>
+                <input id="link" name="link" type="text" required>
+            </fieldset>  
+            <fieldset>
+                <label for="language">Enter language:</label>
+                <select name="language" id="language">
+                    <option value="Python" selected="selected">Python</option>
+                    <option value="C++">C++</option>
+                    <option value="Java">Java</option>
+                </select>
+                <label for="format">Enter format:</label>
+                <select name="format" id="format">
+                    <option value="Book" selected="selected">Book</option>
+                    <option value="Video">Video</option>
+                    <option value="Website">Website</option>
+                </select>
+            </fieldset>
+            <input type="submit" value="Enter">
+            </form>
+        </div>
+        <div class="filters">Ability to save lessons coming soon!
+            {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+            {% if messages %}
+                <div class="success_messages" style="color: {{ flash_color }};">{{ message }}</div>
+            {% endif %}
+            {% endfor %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>

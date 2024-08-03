@@ -11,6 +11,7 @@
         <div class="topbar">
             <div class="heading">Home Page</div>
                 {% if session.name %}
+                <a href="{{url_for('dashboard')}}" class="account_management">Dashboard</a>
                 <a href="{{url_for('logout')}}" class="account_management">Log Out</a>
                 Hello, {{ session.name }}!!!
                 {% else %}
@@ -23,7 +24,46 @@
             filters and save their favorites to their account. I hope to gain experience in both frontend and backend development,
             as well as relational databases.
         </div>
-        <div class="filters">filters:
+        <div class="filters">What kind of lessons are you looking for?<br>
+            <fieldset>
+                <label for="language">What language would you like to learn?</label>
+                <select name="language" id="language">
+                    <option value="Any" selected="selected">Any</option>
+                    <option value="Python">Python</option>
+                    <option value="C++">C++</option>
+                    <option value="Java">Java</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <label for="language">What format are you looking for?</label>
+                <select name="format" id="format">
+                    <option value="Any" selected="selected">Any</option>
+                    <option value="Book">Book</option>
+                    <option value="Video">Video</option>
+                    <option value="Website">Website</option>
+                </select>
+            </fieldset>
+            <button onclick="updateFilters()">Go!</button>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+            <script>
+                function updateFilters() {
+                    //extract selected filter values
+                    const language = document.getElementById("language").value;
+                    const format = document.getElementById("format").value;
+
+                    //convert to json and send to backend for processing
+                    const dict_values = {language, format}
+                    const s = JSON.stringify(dict_values);
+                    
+                    $.ajax ({
+                        url:"/filter",
+                        type:"POST",
+                        contentType:"application/json",
+                        data:JSON.stringify(dict_values)
+                    });
+                }
+            </script>
+
         </div>
     </div>
 </body>

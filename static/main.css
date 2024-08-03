@@ -78,7 +78,7 @@ fieldset {
     margin-bottom: 7px;
 }
 
-label, input, .flashes {
+label, input, .flashes, .success_messages {
     margin-right: 6px;
     margin-bottom: 5px;
 }
@@ -89,4 +89,8 @@ a {
 
 .flashes {
     color: red;
+}
+
+.success_messages {
+    color: green;
 }
