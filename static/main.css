@@ -1,14 +1,14 @@
 html, body {
     background-color: rgb(7, 10, 85);
     margin: 0;
-    padding: 15px; /*Create dark blue border around wrapper*/
-    width: calc(100%-30px); /*Make padding visible and uniform on all sides - calc(100%-padding times 2) */
-    height: calc(100%-30px);
+    padding: 8px; /*Create dark blue border around wrapper*/
+    width: calc(100%-16); /*Make padding visible and uniform on all sides - calc(100%-padding times 2) */
+    height: auto;
     justify-content: center;
 }
 
 .wrapper {
-    height: 600px;
+    height: auto; /*previously 600px */
     padding: 20px; /*7px of padding for html, body and 7px for wrapper*/
     margin: 0;
     border-style: solid 5px;
@@ -22,19 +22,18 @@ html, body {
 
 .topbar, .extra_info, .filters, .account_creation {
     width: calc(100%-20px); /*width = 100& - padding of wrapper */
-    padding: 10px;
+    padding: 12px;
     border-style: solid 5px;
-    margin-bottom: 2%; /*Height of each plus margin-bottom of each should add too 100% */
+    margin-bottom: 12px; /*Height of each plus margin-bottom of each should add too 100% */
 }
 
 .topbar {
-    height: 5%;
+    height: 30px;
     background-color: white;
-    padding: 15px;
 }
 
 .extra_info {
-    height: 22%;
+    height: auto;
     background-color: white;
 }
 
@@ -56,13 +55,34 @@ html, body {
 
 .account_management {
     float: right;
-    width: 10%;
-    height: 60%;
     background-color: rgb(200, 200, 200);
-    padding: 7px;
+    color: black;
+    border-radius: 5px;
+    text-decoration: none;
     margin-left: 20px;
     text-align: center;
-    color: black;
+    width: 10vw;
+    height: 33px;
+    padding: 0px;
+    font-size: 14px;
+}
+/*
+@media (min-width: 600px) {
+    .account_management {
+      font-size: 14px;
+      width: 10vw;
+    }
+  }
+*/
+  @media (max-width: 599px) {
+    .account_management {
+      font-size: 12px;
+      width: 11vw;
+    }
+  }
+
+.account_management:hover {
+    background-color: rgb(230, 230, 230);
 }
 
 /* Extras for account creation page */

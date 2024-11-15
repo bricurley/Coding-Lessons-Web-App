@@ -9,7 +9,7 @@
 <body>
     <div class="wrapper">
         <div class="topbar">
-            <div class="heading">Dashboard for {{ session.username }}</div>
+            <div class="heading" >Dashboard for {{ session.username }}</div>
             <a href="{{url_for('home')}}" class="account_management">Home</a>
         </div>
         <div class="extra_info">Upload a lesson!
@@ -17,8 +17,17 @@
             <fieldset>
                 <label for="name">Enter the lesson name:</label>
                 <input id="name" name="name" type="text" required>
+            </fieldset>
+            <fieldset>
                 <label for="link">Enter the link:</label>
                 <input id="link" name="link" type="text" required>
+                {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                {% if messages %}
+                    <div class="flashes" style="color: {{ flash_color }};">{{ message }}</div>
+                {% endif %}
+                {% endfor %}
+                {% endwith %}
             </fieldset>  
             <fieldset>
                 <label for="language">Enter language:</label>
@@ -38,13 +47,6 @@
             </form>
         </div>
         <div class="filters">Ability to save lessons coming soon!
-            {% with messages = get_flashed_messages() %}
-            {% for message in messages %}
-            {% if messages %}
-                <div class="success_messages" style="color: {{ flash_color }};">{{ message }}</div>
-            {% endif %}
-            {% endfor %}
-            {% endwith %}
         </div>
     </div>
 </body>

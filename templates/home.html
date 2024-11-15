@@ -16,7 +16,7 @@
                 Hello, {{ session.name }}!!!
                 {% else %}
                 <a href="{{url_for('login')}}" class="account_management">Log In</a>
-                <a href="{{url_for('create_account')}}" class="account_management">Create Account</a>
+                <a href="{{url_for('create_account')}}" class="account_management">Create <br>Account</a>
                 {% endif %}
         </div>
         <div class="extra_info">Welcome! I am so glad you're here! This project is not complete; however, I hope to construct a working user login system
@@ -43,7 +43,10 @@
                     <option value="Website">Website</option>
                 </select>
             </fieldset>
-            <button onclick="updateFilters()">Go!</button>
+            <button onclick="updateFilters()">Go!</button><br>
+            test<br><br><br>test
+            test<br><br><br>test
+            test<br><br><br>test
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
             <script>
                 function updateFilters() {

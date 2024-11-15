@@ -79,22 +79,10 @@ def filter():
     # TODO apply filters
     return redirect(url_for("home"))
 
-# Upload lesson a user has found
-@app.route('/upload')
-def upload():
-    new_lesson = request.get_json()
-    print(new_lesson)
-    name = new_lesson["name"]
-    link = new_lesson["link"]
-    language = new_lesson["language"]
-    format = new_lesson["format"]
-    uploaded_by = session["username"]
-    
-    return redirect(url_for("dashboard"))
-
 # dashboard for logged in users
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
+    flash_color = "black"
     if request.method == 'POST':
         name = request.form.get("name")
         link = request.form.get("link")
@@ -102,15 +90,15 @@ def dashboard():
         format = request.form.get("format")
         uploaded_by = session["username"]
         validation = validators.url(link)
+        flash_color = "green"
         if validation:
             entry = Lesson(name,language,format, uploaded_by, link)
             print(entry.name)
             flash("Addition successful. Thank you for contributing!")
-            flash_color = "green"
         elif not validation:
             flash("Addition unsuccessful. Invalid or unsafe URL")
             flash_color = "red"
-        return render_template("dashboard.html", flash_color=flash_color)
+    return render_template("dashboard.html", flash_color=flash_color)
 
 # logout
 @app.route('/logout')
@@ -185,5 +173,3 @@ https://www.geeksforgeeks.org/profile-application-using-python-flask-and-mysql/
 https://www.shiksha.com/online-courses/articles/python-filter-everything-you-need-to-know/#:~:text=Example%201%3A%20Filtering%20a%20list%20of%20numbers&text=In%20this%20example%2C%20we%20use,with%20the%20list%20of%20numbers.
 https://www.geeksforgeeks.org/how-to-implement-filtering-sorting-and-pagination-in-flask/
 '''
-
-#bingus
